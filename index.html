@@ -63,6 +63,11 @@ button{border:0;border-radius:6px;padding:11px 16px;font-weight:700;cursor:point
 .part-table th{background:linear-gradient(#ffe8a6,#edc85d);padding:2.5mm 1mm;border:1px solid #999}
 .part-table td{border:1px solid #999;height:8mm;padding:1mm}
 .part-table td:first-child{text-align:center;width:10mm}
+.part-table td input{width:100%;height:7mm;border:0;padding:1mm;background:transparent;font:inherit;min-width:0}
+.part-details .section-body{padding:2mm 3mm}
+.part-details .part-table th{font-size:8pt}
+.part-details .part-table td{height:8mm}
+
 .result-warranty{display:grid;grid-template-columns:1fr 1fr;gap:3mm}
 .result-warranty .section{margin:0}
 .option-list{display:grid;gap:2mm;font-size:8.5pt}
@@ -80,7 +85,7 @@ button{border:0;border-radius:6px;padding:11px 16px;font-weight:700;cursor:point
  .sheet:last-of-type{page-break-after:auto;break-after:auto}
 
  /* Page 1: controlled, modest fit to keep every section and both signatures inside one A4 sheet. */
- .page1{zoom:.90;width:233.333mm;height:330mm;min-height:330mm}
+ .page1{zoom:.86;width:244.186mm;height:345.349mm;min-height:345.349mm}
  .page1 .doc-header{padding-top:1mm;margin-bottom:2mm}
  .page1 .logos{font-size:21pt}
  .page1 .pill{margin-top:2mm;padding:1.5mm 10mm;font-size:10pt}
@@ -103,13 +108,13 @@ button{border:0;border-radius:6px;padding:11px 16px;font-weight:700;cursor:point
  .page1 .check{gap:1mm}
  .page1 .check input{width:3.5mm;height:3.5mm}
  .page1 .condition-notes{font-size:8.2pt;margin-top:1mm}
- .page1 .terms{padding:2.5mm 3mm;margin:2mm 0;font-size:7.2pt;line-height:1.35}
+ .page1 .terms{padding:2.2mm 3mm;margin:1.7mm 0;font-size:7.2pt;line-height:1.32}
  .page1 .terms strong{font-size:8pt}
  .page1 .terms ol{margin:.5mm 0 0;padding-left:4mm}
- .page1 .signatures{gap:3mm;margin-top:2mm}
- .page1 .signature{min-height:21mm;padding:1.8mm;font-size:8.2pt}
- .page1 .sign-line{margin-top:9mm}
- .page1 .footer{margin:2mm -7mm -1mm;padding:2mm 7mm;font-size:7pt}
+ .page1 .signatures{gap:3mm;margin-top:1.5mm}
+ .page1 .signature{min-height:19mm;padding:1.5mm;font-size:8.2pt}
+ .page1 .sign-line{margin-top:8mm}
+ .page1 .footer{margin:1.5mm -7mm -1mm;padding:1.8mm 7mm;font-size:7pt}
 
  /* Page 2 retains its established layout. */
  .page2{padding-top:9mm;padding-bottom:9mm}
@@ -117,7 +122,11 @@ button{border:0;border-radius:6px;padding:11px 16px;font-weight:700;cursor:point
  .page2 .logos{font-size:23pt}
  .page2 .pill{margin-top:3mm;padding:2mm 12mm;font-size:11pt}
  .page2 .title{font-size:26pt;margin-top:4mm}
- .page2 .section{margin:4mm 0;border-radius:4mm}
+ .page2 .section{margin:2.8mm 0;border-radius:4mm}
+ .page2 .part-details .section-body{padding:2mm 3mm}
+ .page2 .part-table th{padding:2mm 1mm;font-size:8pt}
+ .page2 .part-table td{height:7mm;padding:.5mm}
+ .page2 .part-table td input{height:6mm;font-size:8pt}
  .page2 .section-title{padding:3mm 4mm;font-size:11pt}
  .page2 .section-body{padding:4mm 4mm}
  .page2 .row{min-height:7mm;font-size:9pt}
@@ -251,6 +260,28 @@ button{border:0;border-radius:6px;padding:11px 16px;font-weight:700;cursor:point
   </section>
 
 
+
+  <section class="section part-details">
+    <div class="section-title"><span class="ico">⚙</span> Detail Penggantian Part</div>
+    <div class="section-body">
+      <table class="part-table">
+        <thead>
+          <tr>
+            <th style="width:12%">No.</th>
+            <th style="width:25%">Part Number</th>
+            <th style="width:29%">Part Name</th>
+            <th style="width:10%">Qty</th>
+            <th style="width:24%">Keterangan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td><input aria-label="Part Number 1"></td><td><input aria-label="Part Name 1"></td><td><input aria-label="Qty 1" type="number" min="1"></td><td><input aria-label="Keterangan 1"></td></tr>
+          <tr><td>2</td><td><input aria-label="Part Number 2"></td><td><input aria-label="Part Name 2"></td><td><input aria-label="Qty 2" type="number" min="1"></td><td><input aria-label="Keterangan 2"></td></tr>
+          <tr><td>3</td><td><input aria-label="Part Number 3"></td><td><input aria-label="Part Name 3"></td><td><input aria-label="Qty 3" type="number" min="1"></td><td><input aria-label="Keterangan 3"></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
   <div class="result-warranty">
     <section class="section">
