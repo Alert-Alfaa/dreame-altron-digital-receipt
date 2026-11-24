@@ -1,37 +1,262 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dreame x Altron Digital Receipt</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f6fa;
-      margin: 0;
-      padding: 40px 20px;
-      color: #202124;
-    }
-    .container {
-      max-width: 800px;
-      margin: auto;
-      background: white;
-      padding: 32px;
-      border-radius: 12px;
-    }
-    h1 { color: #202124; }
-    .subtitle { color: #777; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dreame x Altron | Service Receipt</title>
+<style>
+:root{--gold:#d6a52e;--gold2:#f4d77a;--black:#111;--line:#bfc0c2;--gray:#f0f0f0}
+*{box-sizing:border-box}
+body{margin:0;background:#eceef1;color:#111;font-family:Arial,Helvetica,sans-serif}
+.toolbar{max-width:1100px;margin:20px auto 12px;padding:14px 18px;background:#fff;border-radius:10px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.toolbar strong{font-size:17px}.toolbar small{display:block;color:#666;margin-top:4px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+button{border:0;border-radius:6px;padding:11px 16px;font-weight:700;cursor:pointer}
+.btn{background:#151515;color:white}.btn2{background:#e9e9e9;color:#222}
+.hint{max-width:1100px;margin:0 auto 12px;color:#555;font-size:12px;padding:0 4px}
+.sheet{width:210mm;min-height:297mm;margin:14px auto;background:#fff;padding:9mm 8mm 8mm;position:relative;box-shadow:0 3px 18px #0001;overflow:hidden}
+.sheet:before{content:"";position:absolute;left:0;right:0;top:0;height:7mm;background:linear-gradient(155deg,#080808 0 18%,#b88720 19%,#ffe08a 22%,#111 24%,transparent 25%);pointer-events:none}
+.sheet:after{content:"";position:absolute;left:0;right:0;bottom:0;height:7mm;background:linear-gradient(25deg,#050505 0 17%,#b88720 18%,#ffe08a 21%,#111 23%,transparent 24%);pointer-events:none}
+.doc-header{text-align:center;padding-top:2mm;margin-bottom:5mm}
+.logos{font-weight:900;font-size:22pt;letter-spacing:1px}
+.logos .divider{color:#777;padding:0 9px}
+.pill{display:inline-block;margin-top:3mm;border:1px solid var(--gold);background:#101010;color:#fff;border-radius:30px;padding:2mm 12mm;font-size:11pt;font-weight:700}
+.title{font-weight:900;font-size:25pt;margin:2mm 0 0;letter-spacing:.4px}
+.tagline{font-weight:700;letter-spacing:3px;font-size:9pt;margin-top:1mm}
+.gold-rule{display:flex;align-items:center;justify-content:center;gap:8px;margin:1mm auto 4mm;color:#333;font-size:9pt;letter-spacing:2px;font-weight:bold}
+.gold-rule:before,.gold-rule:after{content:"";width:16mm;height:1.5px;background:var(--gold)}
+.top-fields{display:grid;grid-template-columns:1fr 1fr;gap:7mm;margin-bottom:4mm}
+.top-field{display:grid;grid-template-columns:auto 1fr;align-items:center;border:1px solid var(--line);border-radius:5mm;overflow:hidden;min-height:12mm}
+.top-field b{background:linear-gradient(90deg,#f3c75a,#fff0bd);padding:3mm 4mm;font-size:9pt;white-space:nowrap}
+.top-field input{border:0;border-radius:0;min-width:0;padding:2mm 3mm}
+.section{border:1px solid #aaa;border-radius:4mm;overflow:hidden;margin:3mm 0}
+.section-title{background:linear-gradient(110deg,#080808,#333 72%,#090909);color:#fff;font-weight:800;padding:2mm 4mm;font-size:11pt;display:flex;align-items:center;gap:2.5mm}
+.section-title .ico{color:var(--gold2);font-size:14pt}
+.section-body{padding:2.5mm 4mm}
+.row{display:grid;grid-template-columns:30mm 4mm 1fr;align-items:center;min-height:6.2mm;font-size:9pt;gap:1mm}
+.row input{border:0;border-bottom:1px solid #555;border-radius:0;padding:1mm 1mm;font-size:9pt;min-width:0;height:6mm}
+.row textarea{border:0;border-bottom:1px solid #555;border-radius:0;padding:1mm;font-size:9pt;resize:none;width:100%;min-height:8mm}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
+.unit-grid{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
+.unit-grid>div+div{border-left:1px solid #aaa;padding-left:4mm}
+.inline-checks{display:flex;gap:5mm;align-items:center;flex-wrap:wrap;font-size:8.5pt}
+.check{display:inline-flex;align-items:center;gap:1.5mm;white-space:nowrap}
+.check input{width:4mm;height:4mm;margin:0;accent-color:#111}
+.problem-access{display:grid;grid-template-columns:1.45fr 1fr;gap:3mm}
+.problem-box{min-height:31mm}
+.problem-box textarea{width:100%;height:26mm;border:0;resize:none;font-size:9pt}
+.access-list{display:grid;gap:1mm;font-size:8.5pt}
+.condition-notes{display:grid;grid-template-columns:30mm 1fr;gap:2mm;align-items:center;margin-top:2mm;font-size:9pt}
+.condition-notes input{border:0;border-bottom:1px solid #555;width:100%;padding:1mm}
+.terms{background:#ededed;border-radius:4mm;padding:3mm 4mm;margin:3mm 0;font-size:8pt;line-height:1.45}
+.terms strong{font-size:9pt}
+.terms ol{margin:1mm 0 0;padding-left:5mm}
+.signatures{display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-top:3mm}
+.signature{border:1px solid #aaa;border-radius:4mm;min-height:24mm;text-align:center;padding:2mm;font-size:9pt;font-weight:bold}
+.sign-line{margin-top:12mm;font-weight:normal}
+.footer{position:relative;margin:4mm -8mm -1mm;padding:3mm 8mm;background:#101010;color:white;text-align:center;font-size:8pt;font-weight:bold;z-index:1}
+.footer span{color:var(--gold2);padding:0 2mm}
+.page2 .title{font-size:23pt}
+.service-grid{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
+.service-grid>div+div{border-left:1px solid #aaa;padding-left:4mm}
+.part-table{width:100%;border-collapse:collapse;font-size:8.5pt}
+.part-table th{background:linear-gradient(#ffe8a6,#edc85d);padding:2.5mm 1mm;border:1px solid #999}
+.part-table td{border:1px solid #999;height:8mm;padding:1mm}
+.part-table td:first-child{text-align:center;width:10mm}
+.result-warranty{display:grid;grid-template-columns:1fr 1fr;gap:3mm}
+.result-warranty .section{margin:0}
+.option-list{display:grid;gap:2mm;font-size:8.5pt}
+.option-list label{display:flex;gap:2mm;align-items:center}
+.option-list input{margin:0;accent-color:#111}
+.warranty-date{border:0;border-bottom:1px solid #555;min-width:30mm;font-size:8.5pt}
+.handover{margin-top:3mm}
+.signatures.large .signature{min-height:29mm}
+.signatures.large .sign-line{margin-top:13mm}
+@page{size:A4 portrait;margin:0}
+@media print{
+ body{background:#fff}
+ .toolbar,.hint{display:none!important}
+ .sheet{width:210mm;height:297mm;min-height:297mm;margin:0;box-shadow:none;page-break-after:always;break-after:page;padding:9mm 8mm 8mm}
+ .sheet:last-of-type{page-break-after:auto;break-after:auto}
+ input,textarea{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+}
+@media screen and (max-width:850px){.sheet{width:100%;min-height:0;margin:10px auto;padding:20px 16px}.toolbar{margin:10px;flex-direction:column;align-items:flex-start}.logos{font-size:20pt}.top-fields,.two-col,.unit-grid,.problem-access,.service-grid,.result-warranty{grid-template-columns:1fr}.unit-grid>div+div,.service-grid>div+div{border-left:0;padding-left:0}.footer{margin-left:-16px;margin-right:-16px;padding-left:16px;padding-right:16px}}
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>DREAME x ALTRON</h1>
-    <p class="subtitle">Digital Receipt Management System</p>
-    <hr>
-    <h2>Welcome</h2>
-    <p>Customer Receipt Management</p>
-    <p>Version 1.0</p>
+<div class="toolbar">
+  <div><strong>DREAME × ALTRON | Service Receipt</strong><small>Formulir dua halaman · siap dicetak A4</small></div>
+  <div class="actions"><button class="btn2" type="button" onclick="clearForm()">Reset Form</button><button class="btn" type="button" onclick="window.print()">Print / Save PDF</button></div>
+</div>
+<div class="hint">Isi kolom pada dokumen. Gunakan Print / Save PDF untuk mencetak kedua halaman dalam ukuran A4.</div>
+
+<main>
+<section class="sheet page1">
+  <header class="doc-header">
+    <div class="logos">DREAME <span class="divider">|</span> ALTRON</div>
+    <div class="pill">🔧 &nbsp;Service Center</div>
+    <div class="title">SERVICE RECEIPT</div>
+    <div class="tagline">TANDA TERIMA UNIT SERVICE</div>
+  </header>
+
+  <div class="top-fields">
+    <div class="top-field"><b>▤ &nbsp;Receipt No.</b><input id="receiptNo" aria-label="Receipt Number"></div>
+    <div class="top-field"><b>▦ &nbsp;Received Date</b><input type="date" id="receivedDate"></div>
   </div>
+
+  <section class="section">
+    <div class="section-title"><span class="ico">♙</span> Customer Information</div>
+    <div class="section-body">
+      <div class="row"><span>Name</span><b>:</b><input id="customerName"></div>
+      <div class="row"><span>Phone</span><b>:</b><input id="phone"></div>
+      <div class="row"><span>Address</span><b>:</b><input id="address"></div>
+      <div class="row"><span></span><b></b><input aria-label="Address line 2"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title"><span class="ico">⬡</span> Unit Information</div>
+    <div class="section-body unit-grid">
+      <div>
+        <div class="row"><span>Product Brand</span><b>:</b><input id="brand" value="Dreame"></div>
+        <div class="row"><span>Product Model</span><b>:</b><input id="model"></div>
+        <div class="row"><span>Serial Number</span><b>:</b><input id="serial"></div>
+      </div>
+      <div>
+        <div class="row"><span>Warranty Status</span><b>:</b><div class="inline-checks"><label class="check"><input type="checkbox" id="inWarranty"> In Warranty</label><label class="check"><input type="checkbox" id="outWarranty"> Out of Warranty</label></div></div>
+        <div class="row"><span>Purchase Date</span><b>:</b><input type="date" id="purchaseDate"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="problem-access">
+    <section class="section">
+      <div class="section-title"><span class="ico">🔧</span> Problem Description</div>
+      <div class="section-body problem-box"><textarea id="problem"></textarea></div>
+    </section>
+    <section class="section">
+      <div class="section-title"><span class="ico">▤</span> Accessories Received</div>
+      <div class="section-body access-list">
+        <label class="check"><input type="checkbox"> Unit</label>
+        <label class="check"><input type="checkbox"> Charger/Adapter/Power Cord</label>
+        <label class="check"><input type="checkbox"> Base Station/Dock Charging</label>
+        <label class="check"><input type="checkbox"> Clean &amp; Dirty Water Tank</label>
+        <label class="check"><input type="checkbox"> Filter</label>
+        <label class="check"><input type="checkbox"> Fullset</label>
+        <div style="display:grid;grid-template-columns:auto 1fr;align-items:center;gap:2mm;font-size:8.5pt">
+          <label class="check"><input type="checkbox" id="accessoryOtherCheck"> Other</label>
+          <input id="accessoryOtherText" type="text" placeholder="Specify other accessory" style="width:100%;min-width:0;border:0;border-bottom:1px solid #555;border-radius:0;padding:1mm;font-size:8.5pt" disabled>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="section">
+    <div class="section-title"><span class="ico">▣</span> Unit Condition (Received)</div>
+    <div class="section-body">
+      <div class="condition-notes"><b>Condition Notes :</b><input></div>
+      <div class="condition-notes"><span></span><input></div>
+    </div>
+  </section>
+
+  <div class="terms">
+    <strong>ⓘ &nbsp;Ketentuan Penerimaan Unit Service :</strong>
+    <ol>
+      <li>Tanda terima ini merupakan bukti resmi penerimaan unit di Service Center Dreame × Altron.</li>
+      <li>Estimasi perbaikan akan diinformasikan oleh petugas setelah proses diagnosis.</li>
+      <li>Perbaikan dapat berubah mengikuti hasil pemeriksaan dan ketersediaan suku cadang.</li>
+      <li>Unit harap diambil maksimal 14 (empat belas) hari setelah dinyatakan selesai.</li>
+      <li>Service Center tidak bertanggung jawab atas kehilangan aksesoris yang tidak tercantum pada tanda terima ini.</li>
+      <li>Untuk informasi status perbaikan, hubungi Customer Support Dreame.</li>
+    </ol>
+  </div>
+
+  <div class="signatures">
+    <div class="signature">♙ &nbsp;Received by (Service Center)<div class="sign-line">( __________________________ )</div></div>
+    <div class="signature">♙ &nbsp;Submitted by (Customer)<div class="sign-line">( __________________________ )</div></div>
+  </div>
+  <div class="footer">♧ &nbsp;Dreame × Altron Service Center <span>|</span> ☎ Customer Support Dreame <b style="border:1px solid #e6bd54;border-radius:20px;padding:1mm 3mm">082246688080</b> <span>|</span> ◎ www.dreame.co.id</div>
+</section>
+
+<section class="sheet page2">
+  <header class="doc-header">
+    <div class="logos">DREAME <span class="divider">|</span> ALTRON</div>
+    <div class="pill">🔧 &nbsp;Service Center</div>
+    <div class="title">BUKTI PENGAMBILAN UNIT</div>
+    <div class="tagline"></div>
+  </header>
+
+  <section class="section">
+    <div class="section-title"><span class="ico">▤</span> Informasi Service</div>
+    <div class="section-body">
+      <div class="two-col">
+        <div class="row"><span>Completion Date</span><b>:</b><input type="date" id="completionDate"></div>
+        <div class="row"><span>Service Type</span><b>:</b><div class="inline-checks"><label class="check"><input type="checkbox" id="serviceRepair"> Repair</label><label class="check"><input type="checkbox" id="serviceReplacement"> Replacement</label></div></div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <div class="result-warranty">
+    <section class="section">
+      <div class="section-title"><span class="ico">▣</span> Hasil Service</div>
+      <div class="section-body option-list">
+        <label><input type="checkbox"> Unit telah diperbaiki dan berfungsi normal</label>
+        <label><input type="checkbox"> Penggantian part sesuai detail di atas</label>
+        <label><input type="checkbox"> Unit telah dilakukan pengecekan (QC)</label>
+        <label><input type="checkbox"> Lainnya : <input class="warranty-date" style="flex:1;min-width:0"></label>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-title"><span class="ico">♢</span> Garansi Part Pengganti</div>
+      <div class="section-body option-list">
+        <label><input type="checkbox"> Ya, garansi hingga : <input type="date" class="warranty-date"></label>
+        <label><input type="checkbox"> Tidak</label>
+        <div style="background:#eee;border-radius:3mm;padding:2mm;font-style:italic">ⓘ Garansi part berlaku sesuai ketentuan garansi Dreame yang berlaku.</div>
+      </div>
+    </section>
+  </div>
+
+  <section class="section handover">
+    <div class="section-title"><span class="ico">⬡</span> Kondisi Unit Saat Diserahkan</div>
+    <div class="section-body">
+      <div class="inline-checks" style="justify-content:space-around">
+        <label class="check"><input type="checkbox"> Lengkap</label>
+        <label class="check"><input type="checkbox"> Tidak Lengkap</label>
+        
+      </div>
+      <div class="condition-notes"><b>Catatan :</b><input></div>
+      <div class="condition-notes"><span></span><input></div>
+    </div>
+  </section>
+
+  <div class="signatures large">
+    <div class="signature">♙ &nbsp;Diserahkan oleh<br><small>(Service Center / Petugas)</small><div class="sign-line">( __________________________ )</div></div>
+    <div class="signature">♙ &nbsp;Diterima oleh<br><small>(Pelanggan)</small><div class="sign-line">( __________________________ )</div></div>
+  </div>
+  <div class="footer">♧ &nbsp;Dreame × Altron Service Center <span>|</span> ☎ Customer Support Dreame <b style="border:1px solid #e6bd54;border-radius:20px;padding:1mm 3mm">082246688080</b> <span>|</span> ◎ www.dreame.co.id</div>
+</section>
+</main>
+<script>
+const accessoryOtherCheck = document.getElementById('accessoryOtherCheck');
+const accessoryOtherText = document.getElementById('accessoryOtherText');
+accessoryOtherCheck.addEventListener('change', () => {
+  accessoryOtherText.disabled = !accessoryOtherCheck.checked;
+  if (!accessoryOtherCheck.checked) accessoryOtherText.value = '';
+});
+
+function clearForm(){
+ if(!confirm('Kosongkan seluruh isian formulir?'))return;
+ document.querySelectorAll('input').forEach(el=>{
+   if(el.id==='brand')el.value='Dreame';
+   else if(el.type==='checkbox')el.checked=false;
+   else el.value='';
+ });
+ document.querySelectorAll('textarea').forEach(el=>el.value='');
+ document.querySelectorAll('[contenteditable=true]').forEach(el=>el.textContent='');
+ accessoryOtherText.disabled = true;
+}
+</script>
 </body>
 </html>
