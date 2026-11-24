@@ -78,6 +78,8 @@ button{border:0;border-radius:6px;padding:11px 16px;font-weight:700;cursor:point
  .toolbar,.hint{display:none!important}
  .sheet{width:210mm;height:297mm;min-height:297mm;margin:0;box-shadow:none;page-break-after:always;break-after:page;padding:6mm 7mm 6mm;overflow:hidden}
  .sheet:last-of-type{page-break-after:auto;break-after:auto}
+ /* Page 1 needs additional print-only fitting so both signature blocks and footer stay inside one A4 sheet. */
+ .page1{zoom:.88;width:238.636mm;height:337.5mm;min-height:337.5mm}
  .doc-header{padding-top:1mm;margin-bottom:2mm}
  .logos{font-size:19pt}
  .pill{margin-top:1.5mm;padding:1.3mm 10mm;font-size:10pt}
