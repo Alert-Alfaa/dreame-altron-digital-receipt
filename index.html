@@ -79,7 +79,7 @@ button{border:0;border-radius:6px;padding:11px 16px;font-weight:700;cursor:point
  .sheet{width:210mm;height:297mm;min-height:297mm;margin:0;box-shadow:none;page-break-after:always;break-after:page;padding:6mm 7mm 6mm;overflow:hidden}
  .sheet:last-of-type{page-break-after:auto;break-after:auto}
  /* Page 1 needs additional print-only fitting so both signature blocks and footer stay inside one A4 sheet. */
- .page1{zoom:.88;width:238.636mm;height:337.5mm;min-height:337.5mm}
+ .page1{zoom:.98;width:214.286mm;height:303.061mm;min-height:303.061mm}
  .doc-header{padding-top:1mm;margin-bottom:2mm}
  .logos{font-size:19pt}
  .pill{margin-top:1.5mm;padding:1.3mm 10mm;font-size:10pt}
@@ -109,9 +109,26 @@ button{border:0;border-radius:6px;padding:11px 16px;font-weight:700;cursor:point
  .signature{min-height:19mm;padding:1.5mm;font-size:8pt}
  .sign-line{margin-top:8mm}
  .footer{margin:2mm -7mm -1mm;padding:2mm 7mm;font-size:7pt}
- .page2 .title{font-size:21pt}
- .signatures.large .signature{min-height:24mm}
- .signatures.large .sign-line{margin-top:9mm}
+ .page2{padding-top:9mm;padding-bottom:9mm}
+ .page2 .doc-header{padding-top:3mm;margin-bottom:7mm}
+ .page2 .logos{font-size:23pt}
+ .page2 .pill{margin-top:3mm;padding:2mm 12mm;font-size:11pt}
+ .page2 .title{font-size:26pt;margin-top:4mm}
+ .page2 .section{margin:4mm 0;border-radius:4mm}
+ .page2 .section-title{padding:3mm 4mm;font-size:11pt}
+ .page2 .section-body{padding:4mm 4mm}
+ .page2 .row{min-height:7mm;font-size:9pt}
+ .page2 .row input{height:7mm;font-size:9pt}
+ .page2 .result-warranty{gap:4mm}
+ .page2 .option-list{gap:3mm;font-size:9.5pt}
+ .page2 .handover{margin-top:5mm}
+ .page2 .condition-notes{margin-top:3mm;font-size:9pt}
+ .page2 .signatures.large{margin-top:6mm;gap:4mm}
+ .page2 .signatures.large .signature{min-height:34mm;padding:3mm;font-size:9pt}
+ .page2 .signatures.large .sign-line{margin-top:16mm}
+ .page2 .footer{margin-top:5mm;padding-top:3mm;padding-bottom:3mm;font-size:8pt}
+ .signatures.large .signature{min-height:34mm}
+ .signatures.large .sign-line{margin-top:16mm}
  input,textarea{print-color-adjust:exact;-webkit-print-color-adjust:exact}
 }
 @media screen and (max-width:850px){.sheet{width:100%;min-height:0;margin:10px auto;padding:20px 16px}.toolbar{margin:10px;flex-direction:column;align-items:flex-start}.logos{font-size:20pt}.top-fields,.two-col,.unit-grid,.problem-access,.service-grid,.result-warranty{grid-template-columns:1fr}.unit-grid>div+div,.service-grid>div+div{border-left:0;padding-left:0}.footer{margin-left:-16px;margin-right:-16px;padding-left:16px;padding-right:16px}}
